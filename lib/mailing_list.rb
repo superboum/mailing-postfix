@@ -1,4 +1,6 @@
 class MailingList
+    attr_accessor :subscribers, :mailing
+
     def initialize(raw)
         @subscribers = raw.split
         @mailing = @subscribers.shift

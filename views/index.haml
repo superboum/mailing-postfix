@@ -1,0 +1,29 @@
+%br
+%br
+.columns
+  .one-fourth.column
+    %nav.menu
+      - m.lists.each_with_index do |l,i|
+        - if selected == i
+          %a.menu-item.selected{:href => "/#{i}"} 
+            = l.mailing
+        - else
+          %a.menu-item{:href => "/#{i}"} 
+            = l.mailing
+    %form
+      .input-group
+        %input{:placeholder => "New mailing list", :type => "email"}
+        %span.input-group-button
+          %button.btn +
+  .three-fourths.column
+    - if selected != -1
+      - if not m.lists[selected].subscribers.empty?
+        %nav.menu
+          - m.lists[selected].subscribers.each do |s|
+            %a.menu-item
+              %button.btn.btn-danger.btn-sm X
+              = s
+    - else
+      .blankslate
+        %h3 No mailing list selected
+        %p Please choose a mailing list in the menu or add a new one

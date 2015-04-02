@@ -1,6 +1,9 @@
 require_relative 'mailing_list.rb'
 
 class MailingListRepository
+
+    attr_accessor :file, :lists
+
     def initialize(file)
         @file = file
         @lists = Array.new
@@ -13,10 +16,6 @@ class MailingListRepository
                 @lists.push(MailingList.new(line)) 
             end
         end
-    end
-
-    def list(n)
-        @lists[n]
     end
 
     def add(email)
