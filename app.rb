@@ -11,7 +11,7 @@ config_file 'config.yml'
 set :haml, :format => :html5
 set :public_folder, File.dirname(__FILE__) + '/static'
 
-m = MailingListRepository.new(settings.alias_file)
+m = MailingListRepository.new(settings.alias_file, settings.reload_cmd)
 m.load
 
 get '/' do

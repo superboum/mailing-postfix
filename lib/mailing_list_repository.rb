@@ -2,11 +2,12 @@ require_relative 'mailing_list.rb'
 
 class MailingListRepository
 
-    attr_accessor :file, :lists
+    attr_accessor :file, :lists, :reload_cmd
 
-    def initialize(file)
+    def initialize(file, reload_cmd)
         @file = file
         @lists = Array.new
+        @reload_cmd = reload_cmd
     end
 
     def load()
@@ -28,6 +29,7 @@ class MailingListRepository
 
     def save()
         File.write(@file, to_s())
+        system(@reload_cmd)
     end
 
     def to_s()

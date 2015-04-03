@@ -1,1 +1,2 @@
 alias_file: ./test/virtual
+reload_cmd: service postfix reload
