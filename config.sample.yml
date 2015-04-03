@@ -1,2 +1,2 @@
-alias_file: ./test/virtual
-reload_cmd: service postfix reload
+alias_file: /etc/postfix/virtual
+reload_cmd: postmap /etc/postfix/virtual && service postfix reload
