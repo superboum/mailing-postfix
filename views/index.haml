@@ -10,9 +10,9 @@
         - else
           %a.menu-item{:href => "/#{i}"} 
             = l.mailing
-    %form
+    %form{:action => "/add", :method => "POST"}
       .input-group
-        %input{:placeholder => "New mailing list", :type => "email"}
+        %input{:placeholder => "New mailing list", :type => "email", :name => "mailing"}
         %span.input-group-button
           %button.btn +
   .three-fourths.column
@@ -20,10 +20,25 @@
       - if not m.lists[selected].subscribers.empty?
         %nav.menu
           - m.lists[selected].subscribers.each do |s|
-            %a.menu-item
-              %button.btn.btn-danger.btn-sm X
-              = s
+            %form{:action => "/#{selected}/rm", :method => "POST"}
+              %input{:type => "hidden", :value => s, :name => "subscriber"}
+              %a.menu-item
+                %button.btn.btn-danger.btn-sm X
+                = s
+
+      %form{:action => "/#{selected}/add", :method => "POST"}
+        .input-group
+          %input{:placeholder => "New subscriber", :type => "email", :name => "subscriber"}
+          %span.input-group-button
+            %button.btn +
+
+      %br
+      %form{:method => "POST", :action => "/rm"}
+        %input{:type => "hidden", :value => "#{selected}", :name => "mailing"}
+        .form-actions
+          %button.btn.btn-danger Delete this mailing list
     - else
       .blankslate
         %h3 No mailing list selected
         %p Please choose a mailing list in the menu or add a new one
+

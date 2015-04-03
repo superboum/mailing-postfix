@@ -22,6 +22,10 @@ class MailingListRepository
         @lists.push(MailingList.new(email))
     end
 
+    def rm(id)
+        @lists.delete_at(id)
+    end
+
     def save()
         File.write(@file, to_s())
     end
